@@ -20,7 +20,7 @@ def login_post():
 
     # check if the user actually exists
     # take the user-supplied password and compare it with the stored password
-    if not user or not (user.password == password):
+    if not user or (user.password != password):
         flash('Please check your login details and try again.')
         app.logger.warning("User login failed")
         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
@@ -61,3 +61,4 @@ def logout():
     return redirect(url_for('main.index'))
 
 # See https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login for more information
+    
